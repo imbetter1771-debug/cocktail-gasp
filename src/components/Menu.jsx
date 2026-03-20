@@ -2,11 +2,25 @@
 
 import React, {useRef, useState} from 'react';
 import {allCocktails} from "../../shared/data/index.js";
+import {useGSAP} from "@gsap/react";
+import gsap from "gsap";
 
 const Menu = () => {
     const contentRef = useRef(null);
 
     const [currentIndex, setCurrentIndex] = useState(0);
+
+    useGSAP(() => {
+        gsap.fromTo('#title', {opacity: 0}, {opacity: 1, duration: 1});
+        gsap.fromTo('.cocktail img', {opacity: 0, xPercent: -100}, {
+            opacity: 1,
+            xPercent: 0,
+            duration: 1,
+            ease: 'expo.out'
+        });
+        gsap.fromTo('.details h2', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, ease: 'power1.out'});
+        gsap.fromTo('.details p', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, ease: 'power1.out', delay: .01});
+    }, [currentIndex]);
 
     const totalCocktails = allCocktails.length;
 
