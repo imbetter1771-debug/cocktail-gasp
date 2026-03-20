@@ -7,23 +7,17 @@ const Navbar = () => {
     useGSAP(() => {
         const navTween = gsap.timeline({
             scrollTrigger: {
-                trigger: "nav",
-                start: 'bottom top',
+                trigger: "nav", start: 'bottom top',
             }
         })
         navTween.fromTo('nav', {
-                backgroundColor: "transparent"
-            },
-            {
-                backgroundColor: "#00000050",
-                backdropFilter: "blur(5px)",
-                duration: 1,
-                ease: 'power1.inOut'
-            })
+            backgroundColor: "transparent"
+        }, {
+            backgroundColor: "#00000050", backdropFilter: "blur(5px)", duration: 1, ease: 'power1.inOut'
+        })
     })
 
-    return (
-        <nav>
+    return (<nav>
             <div>
                 <a href="#hero" className="flex items-center gap-2">
                     <img src="/images/logo.png" alt="logo"/>
@@ -31,15 +25,12 @@ const Navbar = () => {
                 </a>
 
                 <ul>
-                    {navLinks.map((link) => (
-                        <li key={link.id}>
+                    {navLinks.map((link) => (<li key={link.id}>
                             <a href={`#${link.id}`}>{link.title}</a>
-                        </li>
-                    ))}
+                        </li>))}
                 </ul>
             </div>
-        </nav>
-    );
+        </nav>);
 };
 
 export default Navbar;
